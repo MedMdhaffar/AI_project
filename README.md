@@ -36,9 +36,6 @@ The project code and resources are logically separated into three major developm
 ```bash
 ├── ML_models(detection)    # Anomaly Detection (ANN) Model Notebooks and Training Data
 ├── ML_models(correction)   # Random Forest Correction Model Notebooks (Model1 to Model9)
-├── edge_impulse            # Data Acquisition Scripts and Edge Impulse Project Configurations
-├── STM32f429               # Final Embedded Firmware (High-Accuracy CubeAI & Edge Impulse Deployments)
-├── schemaelectrique        # Electrical Schematics and Hardware Interface Design Files
 ├── .gitignore              # Specifies files and directories ignored by Git
 ├── LICENCE                 # Project's Proprietary License File
 └── README.md               # Project overview, features, and setup instructions
@@ -66,13 +63,6 @@ Detects anomalies in real-time based on magnetometer and sun sensor data.
 | F1 Score | **89.10%** |
 | AUC | **97.63%** |
 
-**Embedded Deployment (Cortex-M4F)(ANN model):**
-| Parameter | Value |
-|----------|-------|
-| Latency | **~2 ms** |
-| RAM Usage | **~0.2 KB** |
-| Flash Usage | **~34.7 KB** |
-
 ---
 
 ### B. **Predictive Correction (Random Forest Models)**  
@@ -80,29 +70,7 @@ Detects anomalies in real-time based on magnetometer and sun sensor data.
 
 After the ANN detects an anomaly, **9 dedicated Random Forest models** (one per sensor channel) predict corrected values, enabling **autonomous recovery without ground control**.
 
----
-
-## ⚙️ II. Embedded Firmware (STM32F429)
-
-**Directory:** `STM32f429`  
-Implements the ML models on the **STM32F429 Discovery Kit (ARM Cortex-M4F)**.
-
-### Deployment Modes:
-| Mode | Description | Purpose |
-|------|-------------|---------|
-| **CubeAI (Optimized)** | Converts ANN to C for real-time inference | **Flight-ready implementation** |
-| **Edge Impulse** | Rapid experimentation (lower accuracy) | Comparison + development |
-
-### Hardware Interfaces:
-- **STM32F429 MCU** → On-board processing + inference  
-- **MPU-9250 IMU** → 9-axis attitude sensing  
-- **NanoCom AX100** → Communication subsystem simulation
-
-Designed for CubeSat constraints: low power, radiation tolerance, thermal stability, compact integration.
-
----
-
-## 🛰️ III. Data Acquisition & Feature Engineering
+## 🛰️ II. Data Acquisition & Feature Engineering
 
 **Directory:** `edge_impulse`
 
@@ -117,16 +85,6 @@ Used for:
 - Performance comparison with CubeAI deployment
 
 ---
-
-
-
-## ⚙️ Deployment and Development Tools
-
-This project utilizes the following key tools and platforms:
-
-* **Microcontroller:** STM32F429ZIT6 (Arm® Cortex®-M4)
-* **Embedded IDE:** STM32CubeIDE
-* **ML Frameworks:** TensorFlow/Keras, Scikit-learn, STM32Cube.AI, Edge Impulse
 
 ## 🚀 Getting Started
 
